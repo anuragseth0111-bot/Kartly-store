@@ -1,1 +1,1409 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08111f">
+<title>Kartly | Everyday, Elevated</title>
+
+<style>
+:root {
+  --navy: #08111f;
+  --navy2: #14243a;
+  --gold: #d4b477;
+  --cream: #f7f4ed;
+  --white: #fffdf8;
+  --muted: #7b818b;
+  --line: #e8e2d7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.topbar {
+  background: var(--navy);
+  color: var(--gold);
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 5%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #b28b45;
+}
+
+.location {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: transparent;
+  text-align: left;
+}
+
+.location small,
+.location strong {
+  display: block;
+}
+
+.location small {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.location strong {
+  font-size: 11px;
+}
+
+.search {
+  display: flex;
+  flex: 1;
+  min-width: 70px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: white;
+}
+
+.search input {
+  width: 100%;
+  min-width: 0;
+  padding: 13px;
+  border: 0;
+  outline: none;
+}
+
+.search button {
+  padding: 0 16px;
+  border: 0;
+  background: var(--navy);
+  color: var(--gold);
+}
+
+.bag {
+  padding: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--navy);
+  color: white;
+  white-space: nowrap;
+}
+
+.bag span {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 32px;
+  padding: 60px 7%;
+  overflow: hidden;
+  background: var(--navy);
+  color: white;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  margin: 22px 0;
+  font-size: clamp(40px, 6vw, 70px);
+  line-height: 1.05;
+  letter-spacing: -3px;
+}
+
+.hero h1 em {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+.hero p {
+  max-width: 440px;
+  color: #c2c9d2;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.primary {
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.hero-image {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #aa8d55;
+  border-radius: 45% 45% 18px 18px;
+  object-fit: cover;
+}
+
+.perks {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 5%;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+  font-size: 11px;
+}
+
+.perks span {
+  margin-right: 8px;
+  color: #a88648;
+}
+
+.content {
+  padding: 45px 5%;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+h2 {
+  margin: 10px 0;
+  font-size: clamp(26px, 4vw, 38px);
+  letter-spacing: -1px;
+}
+
+h2 em {
+  color: #a48243;
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.category {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  text-align: left;
+}
+
+.category img {
+  display: block;
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+}
+
+.category strong {
+  display: block;
+  padding: 11px;
+  font-size: 11px;
+}
+
+.category.active {
+  border-color: #b18a43;
+  box-shadow: 0 4px 15px #d8c79e;
+}
+
+.promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 25px;
+  padding: 34px 6%;
+  background: var(--navy);
+  color: white;
+}
+
+.promo img {
+  width: 100%;
+  height: 200px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.toolbar button,
+.toolbar select {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--white);
+  font-size: 11px;
+}
+
+.toolbar button.active {
+  background: var(--navy);
+  color: var(--gold);
+}
+
+.card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--white);
+}
+
+.card-image {
+  position: relative;
+  height: 165px;
+  background: #eee9df;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.brand {
+  color: #a48243;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.card h3 {
+  min-height: 34px;
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.unit {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.mrp {
+  color: #999;
+  font-size: 10px;
+  text-decoration: line-through;
+}
+
+.add {
+  padding: 8px 10px;
+  border: 1px solid #c1a05d;
+  border-radius: 7px;
+  background: #fff6df;
+  color: #6f5120;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: 35px;
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--muted);
+  text-align: center;
+}
+
+footer {
+  padding: 30px 5%;
+  background: #050b14;
+  color: white;
+}
+
+footer p {
+  color: #a9b2bf;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (max-width: 850px) {
+  .categories {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 11px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .location {
+    max-width: 120px;
+    padding: 8px;
+  }
+
+  .search {
+    order: 5;
+    flex-basis: 100%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 35px 20px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero-image {
+    height: 210px;
+  }
+
+  .perks {
+    justify-content: flex-start;
+    padding: 16px;
+    font-size: 9px;
+  }
+
+  .content {
+    padding: 35px 13px;
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .category img {
+    height: 76px;
+  }
+
+  .category strong {
+    padding: 9px;
+    font-size: 10px;
+  }
+
+  .promo {
+    grid-template-columns: 1fr;
+    padding: 28px 20px;
+  }
+
+  .promo img {
+    height: 175px;
+  }
+
+  .section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .card-image {
+    height: 135px;
+  }
+
+  .card-info {
+    padding: 9px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  ✦ &nbsp; EVERYDAY, ELEVATED &nbsp; ✦ &nbsp; WELCOME TO KARTLY
+</div>
+
+<header>
+  <a class="logo" href="#" style="text-decoration:none;color:inherit">
+    kartly<span>.</span>
+  </a>
+
+  <button class="location" id="locationBtn">
+    <small>DELIVERING TO</small>
+    <strong id="locationText">Your location⌄</strong>
+  </button>
+
+  <label class="search">
+    <input id="search" placeholder="Search groceries, snacks, fast food..." aria-label="Search products">
+    <button id="searchBtn" type="button">⌕</button>
+  </label>
+
+  <button class="bag" id="openCart">
+    Bag <span id="count">0</span>
+  </button>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">✦ &nbsp; YOUR EVERYDAY, REIMAGINED</div>
+    <h1>Good things.<br><em>Right on time.</em></h1>
+    <p>
+      Your daily essentials, favourite bites and little indulgences —
+      thoughtfully brought to your door.
+    </p>
+    <button class="primary" id="explore">Explore the collection ↗</button>
+  </div>
+
+  <img
+    class="hero-image"
+    src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80"
+    alt="Fresh groceries">
+</section>
+
+<div class="perks">
+  <div><span>✧</span><strong>Made for everyday</strong></div>
+  <div><span>◷</span><strong>Convenience, simplified</strong></div>
+  <div><span>♡</span><strong>Quality comes first</strong></div>
+</div>
+
+<section class="content" id="categorySection">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">FIND YOUR FAVOURITES</div>
+      <h2>Shop by <em>category.</em></h2>
+    </div>
+    <div class="muted">Thoughtful picks for every part of your day.</div>
+  </div>
+
+  <div class="categories" id="categories"></div>
+</section>
+
+<section class="promo">
+  <div>
+    <div class="eyebrow">✦ &nbsp; THE GOOD FOOD CLUB</div>
+    <h2>Tonight deserves<br><em>something delicious.</em></h2>
+    <p class="muted" style="color:#c1c8d2">
+      Pizza nights, burger cravings, snack breaks — your next favourite
+      is a tap away.
+    </p>
+    <button class="primary" data-category="Fast Food">Explore fast food ↗</button>
+  </div>
+
+  <img
+    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80"
+    alt="Pizza">
+</section>
+
+<section class="content" id="shop">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">THE KARTLY COLLECTION</div>
+      <h2 id="heading">Everyday <em>favourites.</em></h2>
+      <p class="muted" id="subheading">The little essentials that make your day.</p>
+    </div>
+
+    <select id="sort" aria-label="Sort products">
+      <option value="featured">Featured products</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+      <option value="name">Name A–Z</option>
+    </select>
+  </div>
+
+  <div class="toolbar" id="filters"></div>
+  <div class="products" id="products"></div>
+</section>
+      </main>
+<footer>
+  <div class="logo">kartly<span>.</span></div>
+  <p>
+    Everyday essentials, with a little extra thought.<br>
+    Groceries · Fast food · Home essentials · Everyday finds
+  </p>
+  <div style="border-top:1px solid #26303d;padding-top:16px;font-size:10px;color:#9ca5b1">
+    © <span id="year"></span> Kartly
+    <button id="viewOrders" style="float:right;padding:7px 12px;background:#14243a;color:#fff;border:0;border-radius:6px">
+      My orders
+    </button>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your bag <span id="drawerCount" class="muted"></span></h2>
+    <button class="close" id="closeCart" aria-label="Close cart">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="summary">
+    <div><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+    <div><span>Delivery</span><strong id="delivery">₹0</strong></div>
+    <div class="grand"><span>Total</span><strong id="total">₹0</strong></div>
+    <p class="note" id="shippingNote"></p>
+    <button class="primary full" id="checkout">Continue to checkout →</button>
+  </div>
+</aside>
+
+<div class="modal" id="addressModal">
+  <button class="close" data-close>×</button>
+  <div class="eyebrow">DELIVERY DETAILS</div>
+  <h2>Where should we <em>deliver?</em></h2>
+
+  <form id="addressForm">
+    <label for="customerName">Your name</label>
+    <input id="customerName" required maxlength="100" autocomplete="name" placeholder="Enter your name">
+
+    <label for="phone">Mobile number</label>
+    <input id="phone" required inputmode="tel" maxlength="15" placeholder="10-digit mobile number">
+
+    <label for="address">Full delivery address</label>
+    <textarea id="address" required maxlength="500" rows="3" autocomplete="street-address" placeholder="House, street, area, city, PIN code"></textarea>
+
+    <button class="primary full" type="submit">Save delivery details →</button>
+  </form>
+
+  <p class="note">Real order processing requires a secure backend.</p>
+</div>
+
+<div class="modal" id="checkoutModal">
+  <button class="close" data-close>×</button>
+  <div class="eyebrow">ALMOST YOURS</div>
+  <h2>Review your <em>order.</em></h2>
+  <div id="addressReview" class="muted"></div>
+  <p><strong>Payment: Cash on delivery</strong></p>
+
+  <div class="summary">
+    <div class="grand"><span>Order total</span><strong id="checkoutTotal">₹0</strong></div>
+    <button class="primary full" id="placeOrder">Place order →</button>
+  </div>
+
+  <p class="note">
+    Until a secure backend is configured, checkout will only save a local demo order.
+    It will not notify the store.
+  </p>
+</div>
+
+<div class="modal" id="successModal">
+  <div class="eyebrow">THANK YOU FOR CHOOSING KARTLY</div>
+  <h2>Order received.<br><em>Lovely choice.</em></h2>
+  <p id="successText" class="muted"></p>
+  <button class="primary full" id="done">Continue shopping</button>
+</div>
+
+<div class="modal" id="ordersModal">
+  <button class="close" data-close>×</button>
+  <div class="eyebrow">YOUR KARTLY ACTIVITY</div>
+  <h2>Recent <em>orders.</em></h2>
+  <div id="ordersList"></div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<style>
+.overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:20;
+}
+.overlay.show {display:block}
+
+.drawer {
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:21;
+  display:flex;
+  flex-direction:column;
+  width:min(440px,100%);
+  height:100%;
+  height:100dvh;
+  background:var(--white);
+  transform:translateX(105%);
+  transition:transform .25s;
+}
+.drawer.show {transform:translateX(0)}
+
+.drawer-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px;
+  border-bottom:1px solid var(--line);
+}
+.drawer-head h2 {font-size:22px;margin:0}
+
+.close {
+  width:34px;
+  height:34px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:transparent;
+  font-size:22px;
+}
+
+.cart-items {
+  flex:1;
+  padding:10px 18px;
+  overflow:auto;
+}
+
+.cart-item {
+  display:grid;
+  grid-template-columns:55px 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-item img {
+  width:55px;
+  height:55px;
+  border-radius:8px;
+  object-fit:cover;
+  background:#eee9df;
+}
+.cart-item h4 {margin:0 0 6px;font-size:11px}
+.cart-item small {font-size:10px;color:var(--muted)}
+
+.qty {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:8px;
+}
+.qty button {
+  padding:4px 9px;
+  border:1px solid var(--line);
+  background:white;
+}
+
+.summary {
+  padding:18px;
+  border-top:1px solid var(--line);
+}
+.summary div {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin:11px 0;
+  font-size:12px;
+}
+.summary .grand {
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:17px;
+  font-weight:bold;
+}
+.full {width:100%}
+
+.modal {
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  z-index:30;
+  width:min(450px,calc(100% - 24px));
+  max-height:90dvh;
+  overflow:auto;
+  padding:24px;
+  border-radius:16px;
+  background:var(--white);
+  transform:translate(-50%,-50%);
+}
+.modal.show {display:block}
+.modal .close {float:right}
+.modal h2 {clear:both;font-size:25px}
+.modal label {
+  display:block;
+  margin:13px 0 6px;
+  font-size:11px;
+  font-weight:bold;
+}
+.modal input,.modal textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+}
+.modal .primary {margin-top:15px}
+
+.note {
+  margin-top:13px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.6;
+}
+
+.toast {
+  display:none;
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  z-index:50;
+  max-width:90%;
+  padding:12px 17px;
+  border-radius:9px;
+  background:var(--navy);
+  color:var(--gold);
+  font-size:11px;
+  text-align:center;
+  transform:translateX(-50%);
+}
+.toast.show {display:block}
+.order-record {
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+  line-height:1.8;
+}
+</style>
+  
+  
+<script>
+"use strict";
+
+/* SUPABASE CONFIGURATION
+   Browser mein sirf Project URL aur Publishable Key use karein.
+   service_role ya sb_secret key kabhi paste na karein.
+*/
+const CONFIG = {
+  SUPABASE_URL: "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE",
+  SUPABASE_PUBLISHABLE_KEY: "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE",
+  ORDER_ENDPOINT: ""
+};
+
+const CATEGORIES = [
+  ["All", "Everything", "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=70"],
+  ["Groceries", "Pantry essentials", "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=70"],
+  ["Fruits & Vegetables", "Fresh picks", "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=400&q=70"],
+  ["Dairy & Breakfast", "Start well", "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=400&q=70"],
+  ["Bakery", "Freshly baked", "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=70"],
+  ["Snacks", "Little cravings", "https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=400&q=70"],
+  ["Fast Food", "Made for cravings", "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=70"],
+  ["Beverages", "Sip something good", "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=400&q=70"],
+  ["Personal Care", "Daily rituals", "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=70"],
+  ["Home Care", "Home essentials", "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=400&q=70"],
+  ["Home & Kitchen", "Useful by design", "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=400&q=70"],
+  ["Electronics", "Everyday tech", "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=70"],
+  ["Fashion", "Everyday style", "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=70"],
+  ["Gifts", "Thoughtful finds", "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=400&q=70"]
+];
+
+/* DEMO PRODUCTS: Replace with your actual Supabase catalogue. */
+const SAMPLE = [
+  [1,"Fresh Tomatoes","Kartly Fresh","Fruits & Vegetables",39,49,"500 g","https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=600&q=70"],
+  [2,"Premium Bananas","Kartly Fresh","Fruits & Vegetables",49,59,"6 pcs","https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=70"],
+  [3,"Red Apples","Orchard Select","Fruits & Vegetables",129,159,"1 kg","https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=70"],
+  [4,"Farm Fresh Milk","Daily Dairy","Dairy & Breakfast",34,36,"500 ml","https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=600&q=70"],
+  [5,"Butter Croissants","Bake House","Bakery",99,120,"2 pcs","https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=70"],
+  [6,"Classic Potato Chips","Snack Edit","Snacks",20,20,"1 pack","https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=600&q=70"],
+  [7,"Margherita Pizza","Kartly Kitchen","Fast Food",249,299,"Regular","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=70"],
+  [8,"Veg Burger","Kartly Kitchen","Fast Food",129,159,"1 burger","https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=70"],
+  [9,"French Fries","Kartly Kitchen","Fast Food",89,109,"Regular","https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=70"],
+  [10,"Chocolate Cookies","Sweet Edit","Snacks",79,99,"200 g","https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=70"],
+  [11,"Cola","Refresh Co.","Beverages",40,45,"750 ml","https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=600&q=70"],
+  [12,"Orange Juice","Juice Press","Beverages",89,110,"1 L","https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=70"],
+  [13,"Basmati Rice","Pantry Select","Groceries",189,219,"1 kg","https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=70"],
+  [14,"Whole Wheat Atta","Pantry Select","Groceries",245,275,"5 kg","https://images.unsplash.com/photo-1627485937980-221c88ac04f9?auto=format&fit=crop&w=600&q=70"],
+  [15,"Gentle Hand Wash","Home Ritual","Personal Care",99,125,"250 ml","https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=70"],
+  [16,"Dishwashing Liquid","Home Ritual","Home Care",89,109,"500 ml","https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=600&q=70"],
+  [17,"Ceramic Mug","Everyday Home","Home & Kitchen",199,249,"1 piece","https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=600&q=70"],
+  [18,"Wireless Headphones","Everyday Tech","Electronics",799,999,"1 piece","https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=70"],
+  [19,"Cotton T-shirt","Daily Edit","Fashion",399,499,"1 piece","https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70"],
+  [20,"Gift Box","Kartly Gifts","Gifts",499,599,"1 box","https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=70"]
+].map(p => ({
+  id: "demo-" + p[0],
+  name: p[1],
+  brand: p[2],
+  category: p[3],
+  price: p[4],
+  mrp: p[5],
+  unit: p[6],
+  image_url: p[7],
+  stock: 20
+}));
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+const money = n => "₹" + Number(n || 0).toLocaleString("en-IN", {maximumFractionDigits:2});
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[char]);
+}
+
+function safeImage(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : "";
+  } catch {
+    return "";
+  }
+}
+
+let items = [];
+let cart = {};
+let category = "All";
+let searchTerm = "";
+let customer = null;
+let orders = [];
+
+function toast(message) {
+  const element = $("#toast");
+  element.textContent = message;
+  element.classList.add("show");
+  setTimeout(() => element.classList.remove("show"), 2600);
+}
+
+function isSupabaseConfigured() {
+  return /^https:\/\/[a-zA-Z0-9-]+\.supabase\.co\/?$/.test(CONFIG.SUPABASE_URL)
+    && CONFIG.SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_");
+}
+
+function renderCategories() {
+  $("#categories").innerHTML = CATEGORIES.map(c => `
+    <button class="category ${category === c[0] ? "active" : ""}"
+      data-category="${escapeHTML(c[0])}">
+      <img src="${c[2]}" alt="" loading="lazy">
+      <strong>${escapeHTML(c[0])}</strong>
+    </button>
+  `).join("");
+
+  $("#filters").innerHTML = CATEGORIES.map(c => `
+    <button class="${category === c[0] ? "active" : ""}"
+      data-filter="${escapeHTML(c[0])}">${escapeHTML(c[0])}</button>
+  `).join("");
+}
+
+function getVisibleProducts() {
+  let result = items.filter(p =>
+    (category === "All" || p.category === category) &&
+    `${p.name} ${p.brand} ${p.category} ${p.unit}`
+      .toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const sort = $("#sort").value;
+  if (sort === "low") result.sort((a,b) => a.price - b.price);
+  if (sort === "high") result.sort((a,b) => b.price - a.price);
+  if (sort === "name") result.sort((a,b) => a.name.localeCompare(b.name));
+  return result;
+}
+
+function renderProducts() {
+  const list = getVisibleProducts();
+
+  $("#heading").textContent = category === "All" ? "Everyday favourites." : category;
+  $("#subheading").textContent = searchTerm
+    ? `${list.length} result(s) for "${searchTerm}"`
+    : "The little essentials that make your day.";
+
+  $("#products").innerHTML = list.length ? list.map(p => {
+    const quantity = cart[p.id] || 0;
+    const image = safeImage(p.image_url);
+    return `
+      <article class="card">
+        <div class="card-image">
+          ${image ? `<img src="${escapeHTML(image)}" alt="${escapeHTML(p.name)}" loading="lazy">` : ""}
+        </div>
+        <div class="card-info">
+          <div class="brand">${escapeHTML(p.brand)}</div>
+          <h3>${escapeHTML(p.name)}</h3>
+          <div class="unit">${escapeHTML(p.unit)}</div>
+          <div class="price-row">
+            <div>
+              <span class="price">${money(p.price)}</span><br>
+              ${p.mrp > p.price ? `<span class="mrp">${money(p.mrp)}</span>` : ""}
+            </div>
+            <button class="add" data-add="${escapeHTML(p.id)}">
+              ${quantity ? "IN BAG: " + quantity : "＋ ADD"}
+            </button>
+          </div>
+          ${quantity ? `<div class="qty">
+            <button data-minus="${escapeHTML(p.id)}">−</button>
+            <span>${quantity}</span>
+            <button data-plus="${escapeHTML(p.id)}">+</button>
+          </div>` : ""}
+        </div>
+      </article>`;
+  }).join("") : '<div class="empty">No products found. Try another search or category.</div>';
+}
+
+function cartCount() {
+  return Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+}
+
+function subtotal() {
+  return items.reduce((sum, p) => sum + p.price * (cart[p.id] || 0), 0);
+}
+
+function deliveryCharge() {
+  return subtotal() === 0 || subtotal() >= 299 ? 0 : 20;
+}
+
+function changeQuantity(id, delta) {
+  const product = items.find(p => p.id === String(id));
+  if (!product) return;
+
+  const next = (cart[product.id] || 0) + delta;
+  if (next > product.stock) {
+    toast("Available stock limit reached.");
+    return;
+  }
+
+  if (next <= 0) delete cart[product.id];
+  else cart[product.id] = next;
+
+  renderProducts();
+  renderCart();
+}
+
+function renderCart() {
+  const selected = items.filter(p => cart[p.id]);
+
+  $("#count").textContent = cartCount();
+  $("#drawerCount").textContent = cartCount() ? `(${cartCount()} items)` : "";
+
+  $("#cartItems").innerHTML = selected.length ? selected.map(p => `
+    <div class="cart-item">
+      <img src="${escapeHTML(safeImage(p.image_url))}" alt="">
+      <div>
+        <h4>${escapeHTML(p.name)}</h4>
+        <small>${money(p.price)} · ${escapeHTML(p.unit)}</small>
+        <div class="qty">
+          <button data-minus="${escapeHTML(p.id)}">−</button>
+          <span>${cart[p.id]}</span>
+          <button data-plus="${escapeHTML(p.id)}">+</button>
+        </div>
+      </div>
+      <strong>${money(p.price * cart[p.id])}</strong>
+    </div>
+  `).join("") : '<div class="empty">Your bag is waiting for something lovely.</div>';
+
+  $("#subtotal").textContent = money(subtotal());
+  $("#delivery").textContent = deliveryCharge() ? money(deliveryCharge()) : "FREE";
+  $("#total").textContent = money(subtotal() + deliveryCharge());
+  $("#checkoutTotal").textContent = money(subtotal() + deliveryCharge());
+
+  $("#shippingNote").textContent = subtotal() === 0
+    ? "Add products to begin."
+    : subtotal() < 299
+      ? `Add ${money(299 - subtotal())} more for free delivery.`
+      : "You qualify for free delivery.";
+
+  $("#checkout").disabled = selected.length === 0;
+}
+
+function openDrawer() {
+  $("#overlay").classList.add("show");
+  $("#drawer").classList.add("show");
+}
+
+function closeAll() {
+  $$(".modal").forEach(element => element.classList.remove("show"));
+  $("#drawer").classList.remove("show");
+  $("#overlay").classList.remove("show");
+}
+
+function showModal(id) {
+  $("#overlay").classList.add("show");
+  $("#" + id).classList.add("show");
+}
+
+function normalizeProduct(p) {
+  return {
+    id: String(p.id),
+    name: String(p.name || "Product"),
+    brand: String(p.brand || "Kartly"),
+    category: String(p.category || "Groceries"),
+    price: Math.max(0, Number(p.price) || 0),
+    mrp: Math.max(0, Number(p.mrp) || Number(p.price) || 0),
+    unit: String(p.unit || "piece"),
+    image_url: safeImage(p.image_url || ""),
+    stock: Math.max(0, Number(p.stock) || 0)
+  };
+}
+
+async function loadProducts() {
+  if (!isSupabaseConfigured()) {
+    items = SAMPLE.map(p => ({...p}));
+    renderCategories();
+    renderProducts();
+    renderCart();
+    toast("Preview mode: configure Supabase to load live products.");
+    return;
+  }
+
+  try {
+    const base = CONFIG.SUPABASE_URL.replace(/\/+$/, "");
+    const endpoint = base +
+      "/rest/v1/products?select=id,name,brand,category,unit,price,mrp,stock,image_url&is_active=eq.true&order=name.asc";
+
+    const response = await fetch(endpoint, {
+      headers: {
+        "apikey": CONFIG.SUPABASE_PUBLISHABLE_KEY,
+        "Authorization": "Bearer " + CONFIG.SUPABASE_PUBLISHABLE_KEY
+      }
+    });
+
+    if (!response.ok) throw new Error("Supabase HTTP " + response.status);
+
+    const data = await response.json();
+    items = data.map(normalizeProduct);
+
+    renderCategories();
+    renderProducts();
+    renderCart();
+
+    if (!items.length) toast("No active products found in Supabase.");
+  } catch (error) {
+    console.error("Product loading failed:", error);
+    items = SAMPLE.map(p => ({...p}));
+    renderCategories();
+    renderProducts();
+    renderCart();
+    toast("Database connection failed. Showing demo products.");
+  }
+}
+
+function loadCustomer() {
+  try {
+    customer = JSON.parse(localStorage.getItem("kartlyCustomer") || "null");
+  } catch {
+    customer = null;
+  }
+
+  if (customer) {
+    $("#customerName").value = customer.name || "";
+    $("#phone").value = customer.phone || "";
+    $("#address").value = customer.address || "";
+    $("#locationText").textContent = "Address saved⌄";
+  }
+}
+
+function saveCustomer(event) {
+  event.preventDefault();
+
+  const name = $("#customerName").value.trim();
+  const phone = $("#phone").value.trim();
+  const address = $("#address").value.trim();
+
+  if (!name || !address || phone.replace(/\D/g, "").length < 10) {
+    toast("Please check your name, phone and address.");
+    return;
+  }
+
+  customer = {name, phone, address};
+
+  try {
+    localStorage.setItem("kartlyCustomer", JSON.stringify(customer));
+  } catch {}
+
+  $("#addressReview").textContent =
+    `${customer.name} · ${customer.phone} · ${customer.address}`;
+
+  closeAll();
+  $("#overlay").classList.add("show");
+  $("#checkoutModal").classList.add("show");
+}
+
+function openCheckout() {
+  if (!cartCount()) {
+    toast("Your bag is empty.");
+    return;
+  }
+
+  if (!customer) {
+    showModal("addressModal");
+    return;
+  }
+
+  $("#addressReview").textContent =
+    `${customer.name} · ${customer.phone} · ${customer.address}`;
+
+  $("#checkoutTotal").textContent = money(subtotal() + deliveryCharge());
+  showModal("checkoutModal");
+}
+
+async function placeOrder() {
+  if (!cartCount() || !customer) return;
+
+  const button = $("#placeOrder");
+
+  /*
+   * Actual order submission must go through a secure server endpoint.
+   * The backend must validate product IDs, prices, stock and totals
+   * from the database; never trust prices sent by the browser.
+   */
+  if (CONFIG.ORDER_ENDPOINT) {
+    button.disabled = true;
+    button.textContent = "Submitting…";
+
+    try {
+      const response = await fetch(CONFIG.ORDER_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          customer,
+          payment_method: "COD",
+          items: items.filter(p => cart[p.id]).map(p => ({
+            product_id: p.id,
+            quantity: cart[p.id]
+          }))
+        })
+      });
+
+      if (!response.ok) throw new Error("Order request failed");
+
+      const result = await response.json();
+      if (!result.success && !result.order_id && !result.order_number) {
+        throw new Error("Backend did not confirm order");
+      }
+
+      $("#successText").textContent =
+        "Order reference: " + (result.order_number || result.order_id || "confirmed");
+
+      cart = {};
+      renderProducts();
+      renderCart();
+      closeAll();
+      showModal("successModal");
+    } catch (error) {
+      console.error(error);
+      toast("Order not confirmed. Please try again.");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Place order →";
+    }
+
+    return;
+  }
+
+  /* Local demo: this does NOT send an order to the store. */
+  const demoOrder = {
+    number: "DEMO-" + Date.now().toString().slice(-8),
+    date: new Date().toLocaleString("en-IN"),
+    total: subtotal() + deliveryCharge(),
+    status: "Demo only — not sent to the store"
+  };
+
+  try {
+    orders = JSON.parse(localStorage.getItem("kartlyOrders") || "[]");
+  } catch {
+    orders = [];
+  }
+
+  orders.unshift(demoOrder);
+  orders = orders.slice(0, 20);
+
+  try {
+    localStorage.setItem("kartlyOrders", JSON.stringify(orders));
+  } catch {}
+
+  $("#successText").textContent =
+    `Demo reference ${demoOrder.number}. Your store has NOT received this order.`;
+
+  cart = {};
+  renderProducts();
+  renderCart();
+  closeAll();
+  showModal("successModal");
+}
+
+function showOrders() {
+  try {
+    orders = JSON.parse(localStorage.getItem("kartlyOrders") || "[]");
+  } catch {
+    orders = [];
+  }
+
+  $("#ordersList").innerHTML = orders.length ? orders.map(o => `
+    <div class="order-record">
+      <strong>${escapeHTML(o.number)}</strong><br>
+      ${escapeHTML(o.date)}<br>
+      Total: ${money(o.total)}<br>
+      ${escapeHTML(o.status)}
+    </div>
+  `).join("") : '<p class="muted">No local demo orders yet.</p>';
+
+  showModal("ordersModal");
+}
+
+/* Search and category interactions */
+$("#search").addEventListener("input", event => {
+  searchTerm = event.target.value.trim();
+  renderProducts();
+});
+
+$("#searchBtn").addEventListener("click", () => {
+  searchTerm = $("#search").value.trim();
+  renderProducts();
+  $("#shop").scrollIntoView({behavior:"smooth"});
+});
+
+$("#sort").addEventListener("change", renderProducts);
+
+$("#categories").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+
+  category = button.dataset.category;
+  renderCategories();
+  renderProducts();
+  $("#shop").scrollIntoView({behavior:"smooth"});
+});
+
+$("#filters").addEventListener("click", event => {
+  const button = event.target.closest("[data-filter]");
+  if (!button) return;
+
+  category = button.dataset.filter;
+  renderCategories();
+  renderProducts();
+});
+
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (button && button.closest(".promo")) {
+    category = button.dataset.category;
+    renderCategories();
+    renderProducts();
+    $("#shop").scrollIntoView({behavior:"smooth"});
+  }
+});
+
+$("#products").addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  if (button.dataset.add) changeQuantity(button.dataset.add, 1);
+  if (button.dataset.plus) changeQuantity(button.dataset.plus, 1);
+  if (button.dataset.minus) changeQuantity(button.dataset.minus, -1);
+});
+
+$("#cartItems").addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  if (button.dataset.plus) changeQuantity(button.dataset.plus, 1);
+  if (button.dataset.minus) changeQuantity(button.dataset.minus, -1);
+});
+
+/* Cart, address, checkout and orders */
+$("#explore").addEventListener("click", () => {
+  $("#shop").scrollIntoView({behavior:"smooth"});
+});
+
+$("#openCart").addEventListener("click", openDrawer);
+$("#closeCart").addEventListener("click", closeAll);
+$("#overlay").addEventListener("click", closeAll);
+
+$$("[data-close]").forEach(button => {
+  button.addEventListener("click", closeAll);
+});
+
+$("#locationBtn").addEventListener("click", () => showModal("addressModal"));
+$("#addressForm").addEventListener("submit", saveCustomer);
+$("#checkout").addEventListener("click", openCheckout);
+$("#placeOrder").addEventListener("click", placeOrder);
+
+$("#done").addEventListener("click", ()
