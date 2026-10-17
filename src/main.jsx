@@ -482,4 +482,22 @@ function App() {
               <div className="cod-note"><ShieldCheck /><span><strong>Cash on delivery</strong><small>Pay when your order is delivered.</small></span></div>
               <div className="grand-total"><strong>Total payable</strong><strong>{formatPrice(total)}</strong></div>
               {message && <p className="form-message">{message}</p>}
-              <but
+              
+              <button
+                type="submit"
+                className="checkout-btn"
+                disabled={placingOrder}
+              >
+                {placingOrder ? "Placing order..." : "Place COD order"}
+                <ArrowRight size={17} />
+              </button>
+            </form>
+          </aside>
+        </div>
+      )}
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
+
